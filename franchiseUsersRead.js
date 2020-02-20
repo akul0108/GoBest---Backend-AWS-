@@ -21,7 +21,9 @@ exports.handler = async function(event, context) {
       // disconnected from MongoDB and send them when it reconnects.
       // With serverless, better to fail fast if not connected.
       bufferCommands: false, // Disable mongoose buffering
-      bufferMaxEntries: 0 // and MongoDB driver buffering
+      bufferMaxEntries: 0, // and MongoDB driver buffering
+      useNewUrlParser: true,
+      useUnifiedTopology: true
     });
     conn.model('users', new mongoose.Schema({ name: String }));
   }
