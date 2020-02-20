@@ -1,6 +1,6 @@
+// Sample -2
+
 const mongoose = require('mongoose');
-// const Promise = require('bluebird');
-// const conn = null;
 
 let i = 0;
 
@@ -49,9 +49,10 @@ module.exports.handler = function(event, context, callback) {
             if(!err){
                 var user = mongoose.model('franchiseUsers', userSchema, 'franchiseUsers');
                 
-                const data = JSON.parse(event.body);
-                
-                // const data = event;
+                // const data = JSON.parse(JSON.stringify(event));
+                const data = event;
+                // console.log(typeof(event.body));
+                console.log(data);
 
                 var User = new user();
                 User.username = data.username;
@@ -78,10 +79,7 @@ module.exports.handler = function(event, context, callback) {
                 User.registration_number = data.registration_number;
                 User.company_address = data.company_address;
                 User.approval = data.approval || false;
-                User.save().then(() => callback(null, {
-                    statusCode: 200,
-                    body: JSON.stringify(User),
-                }))
+                User.save().then(() => callback(null, User))
                 
                 .catch(err => callback(null, {
                     body: JSON.stringify(err.keyPattern)
