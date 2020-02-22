@@ -1,4 +1,4 @@
-// Bike model Read
+// Bike Brand Read
 
 const mongoose = require('mongoose');
 
@@ -15,12 +15,12 @@ exports.handler = async function(event, context) {
       useNewUrlParser: true,
       useUnifiedTopology: true
     });
-    conn.model('model', new mongoose.Schema({ }),'model');
+    conn.model('brand', new mongoose.Schema({ name: String }),'brand');
   }
 
-  const M = conn.model('model');
-  // console.log(event.brandId);
-  const doc = await M.find({brandId : event.brandId}, { brandId : 0, __v : 0 });
+  const M = conn.model('brand');
+
+  const doc = await M.find();
   console.log(doc);
 
   return doc;

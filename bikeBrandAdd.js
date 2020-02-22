@@ -1,4 +1,4 @@
-// Bike Model Add
+// Bike Brand Add
 
 const mongoose = require('mongoose');
 // const Promise = require('bluebird');
@@ -7,8 +7,7 @@ const mongoose = require('mongoose');
 const uri = 'mongodb+srv://Akul:8VuKhSsQ8ZUxfi0g@goback-au6tb.mongodb.net/Bike?retryWrites=true&w=majority';
 
 const bikeSchema = new mongoose.Schema({
-    brandId : {type: Object},
-    model : {type: String, unique: true}
+    brand : {type: String, unique: true}
 });
 
 module.exports.handler = function(event, context, callback) {
@@ -25,15 +24,14 @@ module.exports.handler = function(event, context, callback) {
         },
         (err) => {
             if(!err){
-                var bike = mongoose.model('model', bikeSchema, 'model');
+                var bike = mongoose.model('brand', bikeSchema, 'brand');
                 
                 // const data = JSON.parse(event.body);
                 
                 const data = event;
 
                 var Bike = new bike();
-                Bike.brandId = data.brandId;
-                Bike.model = data.model;
+                Bike.brand = data.brand;
                 Bike.save().then(() => callback(null, Bike))
                 
                 .catch(err => callback(null, {
