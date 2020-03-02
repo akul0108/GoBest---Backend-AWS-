@@ -1,10 +1,10 @@
-// AC Read
+// Slot Read
 
 const mongoose = require('mongoose');
 
 let conn = null;
 
-const uri = 'mongodb+srv://Akul:8VuKhSsQ8ZUxfi0g@goback-au6tb.mongodb.net/Electronics?retryWrites=true&w=majority';
+const uri = 'mongodb+srv://Akul:8VuKhSsQ8ZUxfi0g@goback-au6tb.mongodb.net/Products?retryWrites=true&w=majority';
 
 exports.handler = async function(event, context) {
   context.callbackWaitsForEmptyEventLoop = false;
@@ -15,12 +15,12 @@ exports.handler = async function(event, context) {
       useNewUrlParser: true,
       useUnifiedTopology: true
     });
-    conn.model('AC', new mongoose.Schema({  }),'AC');
+    conn.model('Slot', new mongoose.Schema({  }),'Slot');
   }
 
-  const M = conn.model('AC');
+  const M = conn.model('Slot');
 
-  const doc = await M.find({type : event.type}, { type : 0, __v : 0 });
+  const doc = await M.find();
   console.log(doc);
 
   return doc;
