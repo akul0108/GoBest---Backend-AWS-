@@ -1,0 +1,15 @@
+{
+    "development": {
+        "PORT": 3000,
+        "MONGODB_URI": "mongodb+srv://Akul:8VuKhSsQ8ZUxfi0g@goback-au6tb.mongodb.net/User?retryWrites=true&w=majority",
+        "JWT_SECRET": "GoBest#2020",
+        "JWT_EXP": "30m"
+    },
+
+    "production": {
+        "PORT": 80,
+        "MONGODB_URI": "mongodb+srv://Akul:8VuKhSsQ8ZUxfi0g@goback-au6tb.mongodb.net/User?retryWrites=true&w=majority",
+        "JWT_SECRET": "GoBest#2020",
+        "JWT_EXP": "2m"
+    }
+}
